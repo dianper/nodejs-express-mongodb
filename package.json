@@ -31,6 +31,7 @@
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "should": "^13.2.3",
-    "sinon": "^9.0.0"
+    "sinon": "^9.0.0",
+    "supertest": "^4.0.2"
   }
 }

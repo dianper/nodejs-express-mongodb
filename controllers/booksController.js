@@ -1,10 +1,14 @@
-const booksController = (Book) => {
+const booksController = Book => {
   const post = (req, res) => {
     const book = new Book(req.body);
+    if (!req.body.title) {
+      res.status(400);
+      return res.send('Title is required');
+    }
 
     book.save();
-
-    res.status(201).json(book);
+    res.status(201);
+    return res.json(book);
   };
 
   const get = (req, res) => {
@@ -16,7 +20,7 @@ const booksController = (Book) => {
 
     Book.find(query, (err, books) => {
       if (err) {
-        res.send(err);
+        return res.send(err);
       }
 
       return res.json(books);

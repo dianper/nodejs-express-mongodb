@@ -1,13 +1,12 @@
-const should = require('should');
+require('should');
+
 const sinon = require('sinon');
 const booksController = require('../controllers/booksController');
 
 describe('Books Controller', () => {
   describe('Post', () => {
     it('should not allow an empty title on post', () => {
-      const Book = function (book) {
-        this.save = () => {}
-      };
+      const Book = function (book) { this.save = () => { } };
 
       const req = {
         body: {
