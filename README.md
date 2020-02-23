@@ -1,6 +1,8 @@
 # Books API
 Simple RESTful API with Node.js, Express and MongoDB
 
+[![CircleCI](https://circleci.com/gh/dianper/nodejs-express-mongodb.svg?style=shield)](https://circleci.com/gh/dianper/nodejs-express-mongodb)
+
 ## Requirements
 - [Node / Npm](https://nodejs.org/en/download/)
 - [MongoDB](https://www.mongodb.com/download-center/community)
