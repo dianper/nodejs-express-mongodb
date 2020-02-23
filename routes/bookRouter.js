@@ -1,11 +1,12 @@
 const express = require('express');
 const booksController = require('../controllers/booksController');
 
-const routes = (Book) => {
+const routes = Book => {
   const bookRouter = express.Router();
   const controller = booksController(Book);
 
-  bookRouter.route('/books')
+  bookRouter
+    .route('/books')
     .post(controller.post)
     .get(controller.get);
 
@@ -24,7 +25,8 @@ const routes = (Book) => {
     });
   });
 
-  bookRouter.route('/books/:bookId')
+  bookRouter
+    .route('/books/:bookId')
     .get((req, res) => res.json(req.book))
     .put((req, res) => {
       const { book } = req;
@@ -32,7 +34,7 @@ const routes = (Book) => {
       book.author = req.body.author;
       book.genre = req.body.genre;
       book.read = req.body.read;
-      book.save((err) => {
+      book.save(err => {
         if (err) {
           return res.send(err);
         }
@@ -49,14 +51,14 @@ const routes = (Book) => {
         delete req.body._id;
       }
 
-      Object.entries(req.body).forEach((item) => {
+      Object.entries(req.body).forEach(item => {
         const key = item[0];
         const value = item[1];
 
         book[key] = value;
       });
 
-      req.book.save((err) => {
+      req.book.save(err => {
         if (err) {
           return res.send(err);
         }
@@ -65,13 +67,13 @@ const routes = (Book) => {
       });
     })
     .delete((req, res) => {
-      req.book.remove((err) => {
+      req.book.remove(err => {
         if (err) {
           res.send(err);
         }
 
         return res.sendStatus(204);
-      })
+      });
     });
 
   return bookRouter;
