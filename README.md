@@ -10,22 +10,24 @@ Simple RESTful API with Node.js, Express and MongoDB
 - cd nodejs-express-mongodb
 - npm install
 
-## Running
+## Run
 ```sh
 npm start
 # Running on port 3000
 ```
 
-## Methods
-
-- Get
-- Post
-- Put
-- Patch
-- Delete
-
-## Testing
+## Test
 ```sh
 npm run test
 # mocha tests/**/*Tests.js
 ```
+
+## Endpoints
+- /api/books
+  - [GET] list all books
+  - [POST] create a new book (title is required)
+  
+- /api/books/:bookId
+  - [PUT] update a book
+  - [PATCH] update a book (part of the resource)
+  - [Delete] remove an existing book
