@@ -1,17 +1,19 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
+  build:
+    working_directory: ~/nodejs-express-mongodb
+    docker:
+      - image: circleci/node:12.0.0
+      - image: mongo:4.2.1
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm test
-workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+      - run:
+          name: install-npm
+          command: npm install
+      #- save_cache:
+      #    key: dependency-cache-{{ checksum "package-lock.json" }}
+      #    paths:
+      #      - ./node_modules
+      - run:
+          name: test
+          command: npm test
