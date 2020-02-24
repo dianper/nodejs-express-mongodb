@@ -27,7 +27,7 @@ const routes = Book => {
 
   bookRouter
     .route('/books/:bookId')
-    .get((req, res) => res.json(req.book))
+    .get(controller.get)
     .put((req, res) => {
       const { book } = req;
       book.title = req.body.title;
