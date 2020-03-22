@@ -1,9 +1,9 @@
+process.env.NODE_ENV = 'test';
+
 require('should');
 
-process.env.ENV = 'Test';
-
 const request = require('supertest');
-const mongoose = require('mongoose');
+const { mongoose } = require('../config/db.config');
 const app = require('../app.js');
 
 const Book = mongoose.model('Book');
@@ -32,7 +32,6 @@ describe('Book Crud', () => {
       .send(bookPost)
       .expect(200)
       .end((err, results) => {
-        // results.body.read.should.not.equal(false);
         results.body.should.have.property('_id');
         done();
       });

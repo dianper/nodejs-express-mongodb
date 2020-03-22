@@ -1,13 +1,13 @@
+process.env.NODE_ENV = 'test';
+
 require('should');
 
 const sinon = require('sinon');
-const booksController = require('../controllers/booksController');
+const booksController = require('../controllers/book.controller');
 
 describe('Books Controller', () => {
   describe('Post', () => {
     it('should not allow an empty title on post', () => {
-      const Book = function (book) { this.save = () => { } };
-
       const req = {
         body: {
           author: 'Diego'
@@ -20,8 +20,7 @@ describe('Books Controller', () => {
         json: sinon.spy()
       };
 
-      const controller = booksController(Book);
-      controller.post(req, res);
+      booksController.post(req, res);
 
       res.status
         .calledWith(400)

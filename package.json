@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "load": "mongoimport --db mydb-prod --collection books --drop --file booksData.json",
-    "start": "nodemon app.js",
-    "test": "mocha tests/**/*Tests.js"
+    "start": "set NODE_ENV=dev && nodemon app.js",
+    "test": "mocha tests/**/*tests.js"
   },
   "repository": {
     "type": "git",
